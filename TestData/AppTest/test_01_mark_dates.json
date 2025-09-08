@@ -1,0 +1,24 @@
+{
+    "DateInfoDataModels": [
+        {
+            "Month": "September",
+            "Day": "2",
+            "TypeOfDay": "InOffice"
+        },
+        {
+            "Month": "September",
+            "Day": "3",
+            "TypeOfDay": "InOffice"
+        },
+        {
+            "Month": "September",
+            "Day": "4",
+            "TypeOfDay": "InOffice"
+        },
+        {
+            "Month": "September",
+            "Day": "5",
+            "TypeOfDay": "InOffice"
+        }
+    ]
+}
