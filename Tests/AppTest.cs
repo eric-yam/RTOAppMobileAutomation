@@ -1,5 +1,4 @@
 using RTOAndrodAutomationFramework.Components;
-using RTOAndrodAutomationFramework.Dialog;
 using RTOAndrodAutomationFramework.Pages;
 using RTOAndrodAutomationFramework.Util;
 
@@ -14,9 +13,22 @@ public class AppTest : BaseTest
         DateTime startDate = hp.GetStartDate();
         DateTime endDate = hp.GetEndDate();
 
+        //Calculate the total number of working days excluding the weekends and public holidays
         int totalWorkingDays = RTOCalculator.TotalWorkingWeekdays(startDate, endDate); //Calculated using library PublicHoliday
 
         Calendar calendar = hp.GetCalendar();
+
+        string month = "October";
+        int day = 7;
+
+        calendar.SetDate(month, day, "InOffice");
+
+        month = "August";
+        day = 5;
+        calendar.SetDate(month, day, "PTO");
+
+        calendar.SetMonth(month);
+
         calendar.MarkDayInOffice(2);
         calendar.MarkDayInOffice(3);
         calendar.MarkDayInOffice(4);

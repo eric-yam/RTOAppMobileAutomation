@@ -1,6 +1,7 @@
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using RTOAndrodAutomationFramework.Dialog;
+using RTOAndrodAutomationFramework.Enums;
 using RTOAndrodAutomationFramework.Util;
 
 namespace RTOAndrodAutomationFramework.Components;
@@ -8,6 +9,9 @@ namespace RTOAndrodAutomationFramework.Components;
 public class Calendar : BaseComponent
 {
     private AppiumElement CalendarLocator() => this._driver.FindElement(MobileBy.AndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(8)"));
+    private AppiumElement PreviousMonthButton() => this._driver.FindElement(MobileBy.AndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(4)"));
+    private AppiumElement CurrentMonth() => this._driver.FindElement(MobileBy.XPath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]//following-sibling::android.widget.TextView[1]"));
+    private AppiumElement NextMonthButton() => this._driver.FindElement(MobileBy.AndroidUIAutomator("new UiSelector().className(\"android.view.View\").instance(6)"));
     private List<AppiumElement> CalendarDaysList;
 
     public Calendar(AndroidDriver driver) : base(driver)
@@ -27,7 +31,50 @@ public class Calendar : BaseComponent
     }
 
     //Actions
-    //TODO: Revisit, need to specify day and month
+    public void SetDate(string month, int day, string typeOfDay)
+    {
+        if (typeOfDay.Equals(RTOEnumPolicies.RTOPolicies[RTOEnum.InOffice]))
+        {
+            this.SetMonth(month);
+            this.SetCalenderDaysList();
+            this.MarkDayInOffice(day);
+        }
+        else if (typeOfDay.Equals(RTOEnumPolicies.RTOPolicies[RTOEnum.PTO]))
+        {
+            this.SetMonth(month);
+            this.SetCalenderDaysList();
+            this.MarkDayPTO(day);
+        }
+    }
+
+    public void SetMonth(string month)
+    {
+        string currentMonth = this.CurrentMonth().Text.Substring(0, this.CurrentMonth().Text.IndexOf(" "));
+
+        var currentMonthNumber = DateTime.ParseExact(currentMonth, "MMMM", null).Month;
+        var expectedMonthNumber = DateTime.ParseExact(month, "MMMM", null).Month;
+
+        while (currentMonthNumber != expectedMonthNumber)
+        {
+            if (currentMonthNumber > expectedMonthNumber)
+            {
+                this.PreviousMonthButton().Click();
+                currentMonth = this.CurrentMonth().Text.Substring(0, this.CurrentMonth().Text.IndexOf(" "));
+                currentMonthNumber = DateTime.ParseExact(currentMonth, "MMMM", null).Month;
+            }
+            else if (currentMonthNumber < expectedMonthNumber)
+            {
+                this.NextMonthButton().Click();
+                currentMonth = this.CurrentMonth().Text.Substring(0, this.CurrentMonth().Text.IndexOf(" "));
+                currentMonthNumber = DateTime.ParseExact(currentMonth, "MMMM", null).Month;
+            }
+            else
+            {
+                throw new Exception("Error with current month");
+            }
+        }
+    }
+
     public void MarkDayInOffice(int day)
     {
         this.ClickDay(day);

@@ -1,4 +1,5 @@
 using PublicHoliday;
+using RTOAndrodAutomationFramework.Enums;
 
 namespace RTOAndrodAutomationFramework.Util;
 
@@ -38,14 +39,13 @@ public static class RTOCalculator
 
     public static void DecrementDays(string dayToDecrement)
     {
-        if (dayToDecrement.Equals("InOffice"))
+        if (dayToDecrement.Equals(RTOEnumPolicies.RTOPolicies[RTOEnum.InOffice]))
         {
             numDaysInOffice--;
         }
-        else if (dayToDecrement.Equals("PTO"))
+        else if (dayToDecrement.Equals(RTOEnumPolicies.RTOPolicies[RTOEnum.PTO]))
         {
             numDaysPTO--;
-
         }
     }
 }
