@@ -48,4 +48,10 @@ public static class RTOCalculator
             numDaysPTO--;
         }
     }
+
+    public static string GetProgressPercentage(int totalWorkingDays)
+    {
+        float result = (float)numDaysInOffice / (totalWorkingDays - numDaysPTO) * 100;
+        return result.ToString("F2");
+    }
 }

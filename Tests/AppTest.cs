@@ -28,7 +28,7 @@ public class AppTest : BaseTest
                 if (dateInfo.Month != null && dateInfo.Day != null && dateInfo.TypeOfDay != null)
                 {
                     string? month = dateInfo.Month;
-                    int day = Int32.Parse(dateInfo.Day);
+                    int day = int.Parse(dateInfo.Day);
                     string? typeOfDay = dateInfo.TypeOfDay;
 
                     calendar.SetDate(month, day, typeOfDay);
@@ -37,11 +37,10 @@ public class AppTest : BaseTest
             }
         }
 
-        float result = (float)RTOCalculator.numDaysInOffice / totalWorkingDays * 100;
-        string resultFormatted = result.ToString("F2");
+        string result = RTOCalculator.GetProgressPercentage(totalWorkingDays);
         string expectedResult = hp.GetProgress();
 
-        Assert.That(resultFormatted.Equals(expectedResult), Is.EqualTo(true));
+        Assert.That(result.Equals(expectedResult), Is.EqualTo(true));
 
 
         // string month = "October";
