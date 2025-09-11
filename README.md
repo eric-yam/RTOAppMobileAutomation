@@ -1,3 +1,5 @@
+# Introduction
+
 https://docs.nunit.org/articles/nunit/getting-started/installation.html
 https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-csharp-with-nunit
 
@@ -5,7 +7,8 @@ dotnet new nunit
 dotnet add package Appium.WebDriver
 dotnet add package PublicHoliday --version 3.9.0
 #################################################################################
-Launch Emulator:
+
+## Launch Emulator:
 
 1. Navigate to the directory containing the emulator
    ex. \Local\Android\Sdk\emulator\
@@ -16,7 +19,8 @@ Note that you can list all the emulators installed on your machine with:
 - emulator -list-avds
 
 #################################################################################
-Setup AppiumOptions
+
+## Setup AppiumOptions
 
 - AppiumOptions is the Parent class, set any Appium capability
 - Note that UiAutomator2Options is a subclass of AppiumOptions, specifically for Android capabilities
@@ -28,7 +32,7 @@ Setup AppiumOptions
   - UiAutomator2Options: options.AppPackage = "com.google.android.documentsui";
 
 - In AppiumOptions, PlatformName, AutomationName, and DeviceName are capabilities that are built in.
-  PlayformName and AutomationName are always required.
+  PlatformName and AutomationName are always required.
 
 - When using AppiumOptions, the method, AddAdditionalAppiumOption(), can be used to provide additional
   capabilities to AppiumOptions in the case AppiumOptions does not have a property available for a specific capability.
@@ -54,7 +58,8 @@ appiumOptions.AutomationName = "UiAutomator2";
   - IOS -> XCUITest
   - WindowsApp -> Windows
 
-Get Android Application To Launch In Emulator:
+## Get Android Application To Launch In Emulator:
+
 Source : https://www.automationtestinghub.com/apppackage-and-appactivity-name/
 https://www.youtube.com/watch?v=jqTZj0Ky7Hs
 
@@ -71,4 +76,12 @@ https://www.youtube.com/watch?v=jqTZj0Ky7Hs
 
 #################################################################################
 
-How To Run Automation:
+## csproj File Setup:
+
+- Modified the <ItemGroup> in csproj with:
+  <None Update="TestData\**\*.json">
+  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+- During build, now the resource files located in TestData, will also be copied into the Output directory (bin/Debug/net9.0)
+- Therefore, in the TestDataProvider classes, when we specify the path to where the TestData is located, we only need
+  the relative path (to this RTO project) to the test data rather than including the full absolute path.

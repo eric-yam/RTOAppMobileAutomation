@@ -7,7 +7,7 @@ public static class AppTestDataProvider
 {
     public static IEnumerable<Test01DM> Test_01_Mark_Dates_DP()
     {
-        string jsonString = File.ReadAllText("C:\\Users\\Eric\\Documents\\vscode-repos\\RTOAndrodAutomationFramework\\TestData\\AppTest\\test_01_mark_dates.json");
+        string jsonString = File.ReadAllText("TestData\\AppTest\\test_01_mark_dates.json");
         return TestDataProvider.TestCaseDataProvider<Test01DM>(jsonString);
     }
 }

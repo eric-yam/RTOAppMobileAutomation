@@ -19,8 +19,12 @@
     <PackageReference Include="PublicHoliday" Version="3.9.0" />
   </ItemGroup>
 
+  <!-- Modified to copy all Resource files(Test Data) into the output directory (bin/Debug/net9.0)  -->
   <ItemGroup>
     <Using Include="NUnit.Framework" />
+    <None Update="TestData\**\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
