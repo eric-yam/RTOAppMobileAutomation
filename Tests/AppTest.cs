@@ -21,6 +21,7 @@ public class AppTest : BaseTest
 
         Calendar calendar = hp.GetCalendar();
 
+        //TODO: Refactor logic 
         if (wf.DateInfoDataModels != null)
         {
             foreach (var dateInfo in wf.DateInfoDataModels)

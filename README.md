@@ -6,6 +6,7 @@ https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-csharp-with-n
 dotnet new nunit
 dotnet add package Appium.WebDriver
 dotnet add package PublicHoliday --version 3.9.0
+dotnet add package DotNetEnv --version 3.1.1
 #################################################################################
 
 ## Launch Emulator:
