@@ -1,3 +1,4 @@
+namespace RTOAndrodAutomationFramework.Enums;
 public enum EnvironmentEnums
 {
     AppiumServerUrl,

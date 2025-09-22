@@ -20,22 +20,18 @@ public class AppTest : BaseTest
         int totalWorkingDays = RTOCalculator.TotalWorkingWeekdays(startDate, endDate); //Calculated using library PublicHoliday
 
         Calendar calendar = hp.GetCalendar();
-
-        //TODO: Refactor logic 
-        if (wf.DateInfoDataModels != null)
+        
+        foreach (var dateInfo in wf.DateInfoDataModels)
         {
-            foreach (var dateInfo in wf.DateInfoDataModels)
+            if (dateInfo.Month != null && dateInfo.Day != null && dateInfo.TypeOfDay != null)
             {
-                if (dateInfo.Month != null && dateInfo.Day != null && dateInfo.TypeOfDay != null)
-                {
-                    string? month = dateInfo.Month;
-                    int day = int.Parse(dateInfo.Day);
-                    string? typeOfDay = dateInfo.TypeOfDay;
+                string? month = dateInfo.Month;
+                int day = int.Parse(dateInfo.Day);
+                string? typeOfDay = dateInfo.TypeOfDay;
 
-                    calendar.SetDate(month, day, typeOfDay);
+                calendar.SetDate(month, day, typeOfDay);
 
-                }
-            }
+            }               
         }
 
         string result = RTOCalculator.GetProgressPercentage(totalWorkingDays);

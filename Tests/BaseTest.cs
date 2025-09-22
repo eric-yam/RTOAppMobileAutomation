@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using RTOAndrodAutomationFramework.Enums;
 
 namespace RTOAndrodAutomationFramework.Tests;
 
