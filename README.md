@@ -79,8 +79,9 @@ https://www.youtube.com/watch?v=jqTZj0Ky7Hs
 ## csproj File Setup:
 
 - Modified the <ItemGroup> in csproj with:
+  
   <None Update="TestData\**\*.json">
-  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
   </None>
 - During build, now the resource files located in TestData, will also be copied into the Output directory (bin/Debug/net9.0)
 - Therefore, in the TestDataProvider classes, when we specify the path to where the TestData is located, we only need
