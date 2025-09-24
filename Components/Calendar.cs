@@ -90,7 +90,7 @@ public class Calendar : BaseComponent
         this.ClickDay(day);
 
         DateActionDialog dateActionDialog = new DateActionDialog(this._driver);
-        dateActionDialog.ClickMarkInOfficeButton();
+        dateActionDialog.ClickMarkPTOButton();
 
         RTOCalculator.IncrementNumDaysPTO();
     }

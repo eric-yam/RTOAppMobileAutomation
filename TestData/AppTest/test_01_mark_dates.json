@@ -13,12 +13,12 @@
         {
             "Month": "September",
             "Day": "4",
-            "TypeOfDay": "InOffice"
+            "TypeOfDay": "PTO"
         },
         {
             "Month": "September",
             "Day": "5",
-            "TypeOfDay": "InOffice"
+            "TypeOfDay": "PTO"
         }
     ]
 }

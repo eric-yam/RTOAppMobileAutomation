@@ -57,6 +57,6 @@ public static class RTOCalculator
 
     public static double DaysRequired(DateTime startDate, DateTime endDate)
     {
-        return Math.Ceiling(TotalWorkingWeekdays(startDate, endDate) / 2.0) - numDaysInOffice;
+        return Math.Ceiling((TotalWorkingWeekdays(startDate, endDate) - numDaysPTO)/ 2.0) - numDaysInOffice;
     }
 }
