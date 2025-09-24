@@ -54,4 +54,9 @@ public static class RTOCalculator
         float result = (float)numDaysInOffice / (totalWorkingDays - numDaysPTO) * 100;
         return result.ToString("F2");
     }
+
+    public static double DaysRequired(DateTime startDate, DateTime endDate)
+    {
+        return Math.Ceiling(TotalWorkingWeekdays(startDate, endDate) / 2.0) - numDaysInOffice;
+    }
 }

@@ -20,7 +20,7 @@ public class AppTest : BaseTest
         int totalWorkingDays = RTOCalculator.TotalWorkingWeekdays(startDate, endDate); //Calculated using library PublicHoliday
 
         Calendar calendar = hp.GetCalendar();
-        
+
         foreach (var dateInfo in wf.DateInfoDataModels)
         {
             if (dateInfo.Month != null && dateInfo.Day != null && dateInfo.TypeOfDay != null)
@@ -30,16 +30,21 @@ public class AppTest : BaseTest
                 string? typeOfDay = dateInfo.TypeOfDay;
 
                 calendar.SetDate(month, day, typeOfDay);
-
-            }               
+            }
         }
 
+        //Validate RTO Progress Percentage
         string result = RTOCalculator.GetProgressPercentage(totalWorkingDays);
         string expectedResult = hp.GetProgress();
 
-        Assert.That(result.Equals(expectedResult), Is.EqualTo(true));
+        Assert.That(result.Equals(expectedResult), Is.EqualTo(true), $"Actual RTO Progress: [{result}], ExpectedResult: [{expectedResult}]");
         //TODO: Include Month Parameter when marking PTO/In Office days
 
         //note that current example, June 1 -> September 30, there are 62 days excluding weekends and public holidays
+
+        //Validate Required Days Remaining
+        var daysRequired = RTOCalculator.DaysRequired(startDate, endDate);
+        string expectedRequiredDaysMsg = hp.GetDaysRequired();
+        Assert.That(expectedRequiredDaysMsg.Contains(daysRequired.ToString()), Is.EqualTo(true), $"Actual Required Days: [{daysRequired}], ExpectedResult: [{expectedRequiredDaysMsg}]");
     }
 }
